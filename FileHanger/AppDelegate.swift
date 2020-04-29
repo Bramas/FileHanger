@@ -16,7 +16,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var statusItem: NSStatusItem!
     var statusItemView: StatusItemView!
     
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         let storyboard = NSStoryboard(name: "Main", bundle: nil)
@@ -29,9 +28,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let popover = NSPopover()
         popover.contentSize = NSSize(width: 150, height: 60)
         popover.behavior = .transient
-        popover.contentViewController = vc //NSHostingController(rootView: contentView)
+        popover.contentViewController = vc
         self.popover = popover
- 
+
         // Create the status item
         self.statusItem = NSStatusBar.system.statusItem(withLength: 23)
         //(withLength: NSStatusItem.variableLength)
@@ -40,19 +39,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.statusItemView.setup(target: self, action: #selector(moveToMainThread))
         self.statusItem.button?.addSubview(self.statusItemView)
         
-        
+
     }
 
     @objc func moveToMainThread()
     {
-        print("moveToMainThread")
+        // I don't know how to do it directly
         performSelector(onMainThread: #selector(togglePopover(_:)), with: nil, waitUntilDone: false)
     }
     
     @objc func togglePopover(_ sender: AnyObject?) {
-
-        print("togglePopover")
-        if self.statusItemView.clippedFiles.count > 0 { return }
         
         if let button = self.statusItem.button {
             if self.popover.isShown {

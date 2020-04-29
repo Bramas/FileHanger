@@ -11,14 +11,14 @@ import Cocoa
 
 class StatusItemView: NSTextField {
     
-    /*
+    /* Other possible icons
     let textEmpty  = "📪"
     let textFull   = "📬"
     let textAccept = "📭"*/
+    
     let textEmpty  = "◻"
     let textFull   = "◼"
     let textAccept = "▣"
-    
     
     var clippedFiles = [NSURL]()
     var pasteboardItems : [NSPasteboardItem] = []
@@ -47,12 +47,11 @@ class StatusItemView: NSTextField {
     }
     
     override func prepareForDragOperation(_ sender: NSDraggingInfo) -> Bool {
-        print("prepareForDragOperation")
         return true
     }
+    
     override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
-        print("performDragOperation")
-        
+
         if let pi = sender.draggingPasteboard.pasteboardItems {
             pasteboardItems = pi
         }
@@ -67,16 +66,7 @@ class StatusItemView: NSTextField {
             }
         
         pasteboardObjects.forEach { (object) in
-            
-            if let quote = object as? NSString {
-                //avatarInfo.quote = quote as String
-            }
-
             if let url = object as? NSURL {
-
-                if let s = url.absoluteString {
-                    //print(NSWorkspace.shared.icon(forFile: s))
-                }
                 self.clippedFiles.append(url)
             }
         }
@@ -88,11 +78,9 @@ class StatusItemView: NSTextField {
         
     }
     override func draggingEnded(_ sender: NSDraggingInfo) {
-        print("draggingEnded")
         
     }
     override func draggingExited(_ sender: NSDraggingInfo?) {
-        print("draggingExited")
         
         if clippedFiles.count > 0 {
             self.stringValue = textFull
@@ -103,7 +91,6 @@ class StatusItemView: NSTextField {
     
     
     override func mouseDown(with event: NSEvent) {
-        print("mouseDown")
         
         var dr_items = [NSDraggingItem]()
         
@@ -131,19 +118,17 @@ class StatusItemView: NSTextField {
         self.stringValue = textEmpty
     }
     
-
 }
 
 
 // MARK: - NSDraggingSource
 extension StatusItemView: NSDraggingSource {
-    //1.
+
     func draggingSession(_ ds: NSDraggingSession, sourceOperationMaskFor context: NSDraggingContext) -> NSDragOperation {
         ds.draggingFormation = .pile
         return .move
     }
     
-
     //Returns whether the modifier keys will be ignored for this dragging session.
     func ignoreModifierKeys(for: NSDraggingSession) -> Bool {
         return false
