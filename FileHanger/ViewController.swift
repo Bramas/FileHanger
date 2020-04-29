@@ -22,6 +22,9 @@ class ViewController: NSViewController {
         }
     }
 
-
+    @IBAction func onQuit(_ sender: Any) {
+        exit(EXIT_SUCCESS)
+    }
+    
 }
 
