@@ -7,6 +7,7 @@ This feature can be found in many paid applications such as [unclutter](https://
 
 As you may see, **FileHanger** is open source, and the source code is quiet simple. There are few features I need to add such as auto-launch at startup, and also taking into accound key modifier to copy or move files accordingly. **Do not hesitate to send a pull-request**.
 
+# How it works
 ### 1. Move your files on the icon on your status bar
 
 
@@ -14,3 +15,9 @@ As you may see, **FileHanger** is open source, and the source code is quiet simp
 
 
 ![](./screenRecord.gif)
+
+# Author
+Quentin Bramas
+
+# Licence
+MIT
