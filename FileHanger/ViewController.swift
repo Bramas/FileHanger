@@ -25,6 +25,9 @@ class ViewController: NSViewController {
     @IBAction func onQuit(_ sender: Any) {
         exit(EXIT_SUCCESS)
     }
+    @IBAction func openLauchAtStartup(_ sender: Any) {
+        NSWorkspace.shared.open(URL(fileURLWithPath: "/System/Library/PreferencePanes/Accounts.prefPane"))
+    }
     
 }
 
